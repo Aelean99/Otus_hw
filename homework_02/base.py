@@ -16,6 +16,7 @@ class Vehicle(ABC):
                f"started {self.started}"
 
     def start(self):
+        # Если транспорт ещё не заведён
         if not self.started:
             if self.fuel > 0:
                 self.started = True
@@ -23,12 +24,18 @@ class Vehicle(ABC):
                 raise homework_02.LowFuelError
 
     def move(self, distance: float):
-        # расход топлива на 1 литр
-        distance_per_liter: float = round(self.weight / self.fuel_consumption, 1)  # 14.29
+        # Пробуем поехать не заведя машину? :)
+        try:
+            self.start()
+        except homework_02.LowFuelError:
+            raise homework_02.NotEnoughFuel
 
-        # необходимо топлива чтобы проехать переданную дистанцию
-        fuel_needs = round(distance / distance_per_liter, 1)
+        # расход топлива на 1 литр
+        distance_per_liter: float = round(self.weight / self.fuel_consumption, 1)
+
+        # необходимо топлива, чтобы проехать переданную дистанцию
+        fuel_needs = round(distance / distance_per_liter, 3)
         if self.fuel < fuel_needs:
             raise homework_02.NotEnoughFuel
         else:
-            self.fuel -= fuel_needs
+            self.fuel = round(self.fuel - fuel_needs, 1)

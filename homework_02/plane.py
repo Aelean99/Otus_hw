@@ -8,8 +8,8 @@ class Plane(homework_02.Vehicle):
     cargo: int
     max_cargo: int
 
-    def __init__(self, max_cargo):
-        super().__init__()
+    def __init__(self, max_cargo, weight, fuel, fuel_consumption):
+        super().__init__(weight, fuel, fuel_consumption)
         self.max_cargo = max_cargo
 
     def load_cargo(self, value):
