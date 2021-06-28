@@ -15,6 +15,8 @@ class Plane(homework_02.Vehicle):
     def load_cargo(self, value):
         if (self.cargo + value) > self.max_cargo:
             raise homework_02.CargoOverload
+        else:
+            self.cargo += value
 
     def remove_all_cargo(self):
         old_cargo = self.cargo

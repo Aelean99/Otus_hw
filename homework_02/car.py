@@ -5,9 +5,9 @@ import homework_02
 
 
 class Car(homework_02.Vehicle):
-    def __init__(self, engine, weight, fuel, fuel_consumption):
-        super().__init__(weight, fuel, fuel_consumption)
-        self.engine = engine
+    def __init__(self, weight, fuel, fuel_consumption):
+        super(Car, self).__init__(weight, fuel, fuel_consumption)
+        self.engine = None
 
     def __repr__(self):
         return f"Current weight {self.weight}, fuel {self.fuel}, fuel_consumption {self.fuel_consumption}, " \
