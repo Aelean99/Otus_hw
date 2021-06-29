@@ -1,3 +1,3 @@
-from utils import add_homework_path
-
-add_homework_path(__file__)
+# from ... import homework_02
+# #
+# homework_02.__all__(__file__)

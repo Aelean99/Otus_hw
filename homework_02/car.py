@@ -1,10 +1,10 @@
 """
 создайте класс `Car`, наследник `Vehicle`
 """
-import homework_02
+from homework_02 import base, engine
 
 
-class Car(homework_02.Vehicle):
+class Car(base.Vehicle):
     def __init__(self, weight, fuel, fuel_consumption):
         super(Car, self).__init__(weight, fuel, fuel_consumption)
         self.engine = None
@@ -13,5 +13,5 @@ class Car(homework_02.Vehicle):
         return f"Current weight {self.weight}, fuel {self.fuel}, fuel_consumption {self.fuel_consumption}, " \
                f"started {self.started}, engine {self.engine}"
 
-    def set_engine(self, engine: homework_02.Engine):
-        self.engine = engine
+    def set_engine(self, my_engine: engine.Engine):
+        self.engine = my_engine
