@@ -27,5 +27,7 @@ class Vehicle(ABC):
         if 0 < self.fuel > self.fuel_consumption:
             self.started = True
             self.fuel = self.fuel - distance * self.fuel_consumption
+            if self.fuel < 0:
+                raise exceptions.NotEnoughFuel
         else:
             raise exceptions.NotEnoughFuel
