@@ -5,6 +5,7 @@ from homework_02 import exceptions
 
 class Vehicle(ABC):
     started = False
+    distance: int
 
     def __init__(self, weight: float = 100, fuel: float = 20, fuel_consumption: float = 7):
         self.weight = weight
@@ -13,7 +14,7 @@ class Vehicle(ABC):
 
     def __repr__(self):
         return f"Current weight {self.weight}, fuel {self.fuel}, fuel_consumption {self.fuel_consumption}, " \
-               f"started {self.started}"
+               f"started {self.started}, distance {self.distance}"
 
     def start(self):
         # Если транспорт ещё не заведён
@@ -24,10 +25,11 @@ class Vehicle(ABC):
                 raise exceptions.LowFuelError
 
     def move(self, distance: int):
-        if 0 < self.fuel > self.fuel_consumption:
-            self.started = True
-            self.fuel = self.fuel - distance * self.fuel_consumption
-            if self.fuel < 0:
+        if self.fuel > self.fuel_consumption > 0:
+            fuel_need = self.fuel_consumption * distance
+            if self.fuel - fuel_need < 0:
                 raise exceptions.NotEnoughFuel
+            else:
+                self.fuel -= fuel_need
         else:
             raise exceptions.NotEnoughFuel
