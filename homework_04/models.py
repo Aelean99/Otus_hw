@@ -54,7 +54,7 @@ class User(Decl_base):
     username = Column(String(50), nullable=False, default="", server_default="")
     email = Column(String(100), nullable=False, default="", server_default="", unique=True)
 
-    posts = relationship("Post", back_populates="user", uselist=False)
+    posts = relationship("Post", back_populates="user")
 
     def __init__(self, name, username, email, **kwargs):
         self.name = name
@@ -73,7 +73,7 @@ class Post(Decl_base):
     title = Column(String(120), nullable=False, default="", server_default="")
     body = Column(Text, nullable=False, default="", server_default="")
 
-    user = relationship("User", back_populates="posts", uselist=False)
+    user = relationship("User", back_populates="posts")
 
     def __init__(self, userId, title, body, **kwargs):
         self.user_id = userId
