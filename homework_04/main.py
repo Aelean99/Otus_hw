@@ -31,7 +31,7 @@ async def my_insert(to_table, data: List[dict]):
 
 
 async def async_main():
-    # await create_tables()
+    await create_tables()
     users_data, posts_data = await asyncio.gather(get_users_data(), get_posts_data())
     await asyncio.gather(my_insert(to_table=User, data=users_data),
                          my_insert(to_table=Post, data=posts_data))
