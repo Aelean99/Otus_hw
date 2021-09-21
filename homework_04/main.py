@@ -16,7 +16,7 @@ import asyncio
 from typing import List
 
 from jsonplaceholder_requests import get_users_data, get_posts_data
-from models import _AsyncSession, async_engine, Decl_base, User, Post
+from models import Session, async_engine, Decl_base, User, Post
 
 
 async def create_tables():
@@ -25,7 +25,7 @@ async def create_tables():
 
 
 async def my_insert(to_table, data: List[dict]):
-    async with _AsyncSession() as session:
+    async with Session() as session:
         ready_list = [to_table(**i) for i in data]
         session.add_all(ready_list)
 

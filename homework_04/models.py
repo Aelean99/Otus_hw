@@ -32,7 +32,7 @@ Decl_base = declarative_base(bind=async_engine, cls=Base)
 async_session_factory = sessionmaker(bind=async_engine, class_=AsyncSession, expire_on_commit=False)
 
 
-class _AsyncSession:
+class Session:
     def __init__(self):
         self.session = async_scoped_session(session_factory=async_session_factory, scopefunc=current_task)
 
