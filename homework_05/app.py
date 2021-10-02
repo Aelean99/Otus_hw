@@ -18,7 +18,7 @@ app = Flask(__name__)
 
 @app.route("/", endpoint="index")
 def index():
-    return render_template("base.html")
+    return render_template("index.html")
 
 
 @app.route("/about/", endpoint="about")
